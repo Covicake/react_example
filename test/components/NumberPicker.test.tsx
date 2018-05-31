@@ -11,6 +11,10 @@ describe('NumberPicker', () => {
                 const wrapper = shallow(<NumberPicker/>);
                 expect(wrapper.find('button').at(1).text()).toBe('0');
             });
+            test('Debería inicializarse en 200', () => {
+                const wrapper = shallow(<NumberPicker initialValue={200}/>);
+                expect(wrapper.find('button').at(1).text()).toBe('200');
+            });
         });
     });
     describe('PlusButton', () => {
