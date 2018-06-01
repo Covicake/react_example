@@ -15,6 +15,15 @@ describe('NumberPicker', () => {
                 const wrapper = shallow(<NumberPicker initialValue={200}/>);
                 expect(wrapper.find('button').at(1).text()).toBe('200');
             });
+            test('Debería dar error al tener valor inicial mayor que maximo', () => {
+                expect(() => shallow(<NumberPicker initialValue={200} max={5}/>)).toThrow('Error');
+            });
+            test('Debería dar error al tener valor inciial menor que minimo', () => {
+                expect(() => shallow(<NumberPicker initialValue={5} min={10}/>)).toThrow('Error');
+            });
+            test('Valor inicial debe estar entre min y max, si no debe dar error', () => {
+                expect(() => shallow(<NumberPicker initialValue={10} min={11} max={9}/>)).toThrow('Error');
+            });
         });
     });
     describe('PlusButton', () => {

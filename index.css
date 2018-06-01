@@ -1,0 +1,30 @@
+.number-picker{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    height: 28px;
+    border: 1px solid lightgray;
+}
+
+.number-picker-button{
+    background: green;
+    color: white;
+    font-size: 20px;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid white;
+}
+
+.display{
+    background: white;
+    color: red;
+    font-size: 20px;
+    width: 100px;
+    border: 0px solid white;
+}

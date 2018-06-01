@@ -12,7 +12,7 @@ export interface CounterProps {
 
 export default class NumberPicker extends React.Component<CounterProps, CounterState> {
 
-   /* private static checkProps(props: CounterProps) {
+   private static checkProps(props: CounterProps) {
         if (props.initialValue !== undefined) {
             if (props.min !== undefined && props.min > props.initialValue) {
                 throw new Error('Error');
@@ -22,12 +22,11 @@ export default class NumberPicker extends React.Component<CounterProps, CounterS
             }
         }
     }
-    */
 
     constructor(props) {
         super(props);
 
-      // NumberPicker.checkProps(this.props);
+       NumberPicker.checkProps(this.props);
 
         if (this.props.initialValue !== undefined) {
             this.state = {
@@ -66,10 +65,10 @@ export default class NumberPicker extends React.Component<CounterProps, CounterS
     }
 
     render() {
-        return <div>
-            <button onClick={this.addClick}>+</button>
-            <button>{this.state.numberA}</button>
-            <button onClick={this.minusClick}>-</button>
+        return <div className='number-picker'>
+            <button className='number-picker-button add' onClick={this.addClick}>+</button>
+            <button className='display'>{this.state.numberA}</button>
+            <button className='number-picker-button minus' onClick={this.minusClick}>-</button>
             </div>;
     }
 }
