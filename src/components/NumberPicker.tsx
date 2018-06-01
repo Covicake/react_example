@@ -10,6 +10,40 @@ export interface CounterProps {
     initialValue?: number;
 }
 
+const numberPicker: React.CSSProperties = {
+    margin: 'auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '150px',
+    height: '28px',
+    border: '1px solid lightgray',
+};
+
+const numberPickerButton: React.CSSProperties = {
+    background: 'green',
+    color: 'white',
+    fontSize: '20px',
+    height: '28px',
+    width: '28px',
+    borderRadius: '50%',
+    border: '0px solid white'
+};
+
+const numberPickerDisplay: React.CSSProperties = {
+    background: 'white',
+    color: 'red',
+    fontSize: '20px',
+    width: '100px',
+    border: '0px solid white'
+};
+
+const minus: React.CSSProperties = {
+    background: 'red'
+};
+
+const minusButton = {...numberPickerButton, ...minus};
+
 export default class NumberPicker extends React.Component<CounterProps, CounterState> {
 
    private static checkProps(props: CounterProps) {
@@ -64,11 +98,12 @@ export default class NumberPicker extends React.Component<CounterProps, CounterS
         }
     }
 
+
     render() {
-        return <div className='number-picker'>
-            <button className='number-picker-button add' onClick={this.addClick}>+</button>
-            <button className='display'>{this.state.numberA}</button>
-            <button className='number-picker-button minus' onClick={this.minusClick}>-</button>
+        return <div className='number-picker' style={numberPicker}>
+            <button className='number-picker-button add' style={numberPickerButton} onClick={this.addClick}>+</button>
+            <button className='display' style={numberPickerDisplay}>{this.state.numberA}</button>
+            <button className='number-picker-button minus' style={minusButton} onClick={this.minusClick}>-</button>
             </div>;
     }
 }
