@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as styles from './NumberPicker.css';
 
 export interface CounterState {
     numberA: number;
@@ -9,40 +10,6 @@ export interface CounterProps {
     max?: number;
     initialValue?: number;
 }
-
-const numberPicker: React.CSSProperties = {
-    margin: 'auto',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '150px',
-    height: '28px',
-    border: '1px solid lightgray',
-};
-
-const numberPickerButton: React.CSSProperties = {
-    background: 'green',
-    color: 'white',
-    fontSize: '20px',
-    height: '28px',
-    width: '28px',
-    borderRadius: '50%',
-    border: '0px solid white'
-};
-
-const numberPickerDisplay: React.CSSProperties = {
-    background: 'white',
-    color: 'red',
-    fontSize: '20px',
-    width: '100px',
-    border: '0px solid white'
-};
-
-const minus: React.CSSProperties = {
-    background: 'red'
-};
-
-const minusButton = {...numberPickerButton, ...minus};
 
 export default class NumberPicker extends React.Component<CounterProps, CounterState> {
 
@@ -76,34 +43,40 @@ export default class NumberPicker extends React.Component<CounterProps, CounterS
     }
 
     addClick() {
-        this.setState({
-            numberA: this.state.numberA + 1
-        });
-        if (this.props.max !== undefined && this.state.numberA > this.props.max) {
-            this.setState({
-                numberA: this.state.numberA - 1
-            });
-        }
-
-    }
-
-    minusClick() {
-        this.setState({
-            numberA: this.state.numberA - 1
-        });
-        if (this.props.min !== undefined && this.state.numberA < this.props.min) {
+        if (this.props.max !== undefined) {
+            if (this.state.numberA < this.props.max) {
+                this.setState({
+                    numberA: this.state.numberA + 1
+                });
+            }
+        } else {
             this.setState({
                 numberA: this.state.numberA + 1
             });
         }
     }
 
+    minusClick() {
+        if (this.props.min !== undefined) {
+            if (this.state.numberA > this.props.min) {
+                this.setState({
+                    numberA: this.state.numberA - 1
+                });
+            }
+        } else {
+            this.setState({
+                numberA: this.state.numberA - 1
+            });
+        }
+    }
+
+
 
     render() {
-        return <div className='number-picker' style={numberPicker}>
-            <button className='number-picker-button add' style={numberPickerButton} onClick={this.addClick}>+</button>
-            <button className='display' style={numberPickerDisplay}>{this.state.numberA}</button>
-            <button className='number-picker-button minus' style={minusButton} onClick={this.minusClick}>-</button>
+        return <div className={styles.numberPicker}>
+            <button className={styles.numberPickerButton} onClick={this.addClick}>+</button>
+            <button className={styles.display}>{this.state.numberA}</button>
+            <button className={styles.numberPickerButton} style={{background: 'red'}} onClick={this.minusClick}>-</button>
             </div>;
     }
 }

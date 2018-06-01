@@ -1,4 +1,4 @@
-.number-picker{
+.numberPicker{
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -8,7 +8,7 @@
     border: 1px solid lightgray;
 }
 
-.number-picker-button{
+.numberPickerButton{
     background: green;
     color: white;
     font-size: 20px;
@@ -27,4 +27,9 @@
     font-size: 20px;
     width: 100px;
     border: 0px solid white;
+}
+
+.add{
+    composes: numberPickerButton;
+    background: red;
 }
