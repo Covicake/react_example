@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+    devServer: {
+        historyApiFallback: true
+    },
     mode: 'production',
     entry: './src/index.tsx',
     resolve: {
