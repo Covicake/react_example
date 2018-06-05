@@ -5,6 +5,7 @@ import rootReducer, { AppState } from './reducers';
 import { decrementCounter, incrementCounter } from './actions';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './containers/Header';
+import Footer from './containers/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Movies from './pages/Movies';
@@ -32,6 +33,7 @@ export default class App extends React.Component<{}, {}> {
                     <Route path='/home' component={Home}/>
                     <Route path='/about' component={About}/>
                     <Route path='/movies' component={Movies}/>
+                    <Footer/>
                 </div>
             </Router>
         </Provider>;
