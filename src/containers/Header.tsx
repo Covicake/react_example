@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { decrementCounter, incrementCounter } from '../actions';
-import { AppState } from '../reducers';
+
+import { inject, observer } from 'mobx-react';
+import { CounterStore } from '../stores/CounterStore';
 
 export interface HeaderProps {
-    counter: number;
-    incrementCounter?: (value: number) => {};
-    decrementCounter?: (value: number) => {};
+    counterStore?: CounterStore;
 }
 
-class Header extends React.Component<HeaderProps, {}> {
+@inject('counterStore')
+@observer
+export default class Header extends React.Component<HeaderProps, {}> {
 
     constructor(props) {
         super(props);
@@ -19,16 +19,16 @@ class Header extends React.Component<HeaderProps, {}> {
     }
 
     increment() {
-        this.props.incrementCounter(2);
+        this.props.counterStore.increment(2);
     }
 
     decrement() {
-        this.props.decrementCounter(2);
+        this.props.counterStore.decrement(2);
     }
 
     render() {
         return <ul>
-            <li>Number of movies:  {this.props.counter}</li>
+            <li>Number of movies:  {this.props.counterStore.counter}</li>
             <li>
                 <button onClick={this.increment}>+</button>
                 <button onClick={this.decrement}>-</button>
@@ -36,14 +36,3 @@ class Header extends React.Component<HeaderProps, {}> {
         </ul>;
     }
 }
-
-const mapStateToProps = (state: AppState) => {
-    return { counter: state.counter.value };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-    incrementCounter: (value: number) => dispatch(incrementCounter(value)),
-    decrementCounter: (value: number) => dispatch(decrementCounter(value))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
